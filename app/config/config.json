@@ -1,11 +1,27 @@
 {
 	"db": {
+		"username": "bh",
+		"password": "eMEINT1!chat",
+		"host": "ds157740.mlab.com",
+		"port": "57740",
+		"name": "chat"
 	},
 	"sessionSecret": "qwertyuiop1234567890",
 	"facebook": {
+		"clientID": "413978385626691",
+		"clientSecret": "b56b38fd4f4ab0e95db402fe96af3948",
+		"callbackURL": "https://basimhennawi-chat.herokuapp.com/auth/facebook/callback",
+		"profileFields": ["id", "displayName", "photos"]
 	},
 	"twitter": {
+		"consumerKey": "dUPYizyXGtUg2sFvT3akZxxTR",
+		"consumerSecret": "hLlEBemz1vn7pTxDmq0YrK87OCUqmOFGulScGROHqNoMH8UxvQ",
+		"callbackURL": "https://basimhennawi-chat.herokuapp.com/auth/twitter/callback",
+		"profileFields": ["id", "displayName", "photos"]
 	},
 	"redis": {
+		"host": "127.0.0.1",
+		"port": 6379,
+		"password": ""
 	}
 }
