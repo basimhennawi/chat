@@ -1,0 +1,27 @@
+{
+  "name": "chat",
+  "version": "1.0.0",
+  "description": "A collective chat application as part of BlackRock Web Solutions GmbH interview process",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "url": "git+https://github.com/basimhennawi/chat.git",
+    "type": "git"
+  },
+  "author": "Basim Hennawi <basim.a.hennawi@gmail.com> (http://basimhennawi.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/basimhennawi/chat/issues"
+  },
+  "homepage": "https://github.com/basimhennawi/chat",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.15.2",
+    "ejs": "^2.5.1",
+    "express": "^4.14.0",
+    "express-session": "^1.14.0",
+    "socket.io": "^1.4.8"
+  }
+}

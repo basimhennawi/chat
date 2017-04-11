@@ -1,0 +1,11 @@
+{
+	"db": {
+	},
+	"sessionSecret": "qwertyuiop1234567890",
+	"facebook": {
+	},
+	"twitter": {
+	},
+	"redis": {
+	}
+}

@@ -1,0 +1,23 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+body {
+  background: #C5DDEB;
+  font-family: "Roboto", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;   
+}
+
+.container {
+  margin: 2% auto;
+  width: 760px;
+  background: #444753;
+}
+
+.not-found-error {
+  padding: 5%;
+  background-color: white;
+}
