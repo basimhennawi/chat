@@ -2,16 +2,16 @@
 
 var userModel = require('../database').models.user;
 
-var create = function (data, callback){
+var create = function (data, callback) {
 	var newUser = new userModel(data);
 	newUser.save(callback);
 };
 
-var findOne = function (data, callback){
+var findOne = function (data, callback) {
 	userModel.findOne(data, callback);
 }
 
-var findById = function (id, callback){
+var findById = function (id, callback) {
 	userModel.findById(id, callback);
 }
 
@@ -21,10 +21,10 @@ var findById = function (id, callback){
  * This method is used ONLY to find user accounts registered via Social Authentication.
  *
  */
-var findOrCreate = function(data, callback){
-	findOne({'socialId': data.id}, function(err, user){
+var findOrCreate = function(data, callback) {
+	findOne({'socialId': data.id}, function(err, user) {
 		if(err) { return callback(err); }
-		if(user){
+		if(user) {
 			return callback(err, user);
 		} else {
 			var userData = {
@@ -36,11 +36,11 @@ var findOrCreate = function(data, callback){
 			// To avoid expired Facebook CDN URLs
 			// Request user's profile picture using user id 
 			// @see http://stackoverflow.com/a/34593933/6649553
-			if(data.provider == "facebook" && userData.picture){
+			if(data.provider == "facebook" && userData.picture) {
 				userData.picture = "http://graph.facebook.com/" + data.id + "/picture?type=large";
 			}
 
-			create(userData, function(err, newUser){
+			create(userData, function(err, newUser) {
 				callback(err, newUser);
 			});
 		}
@@ -52,9 +52,9 @@ var findOrCreate = function(data, callback){
  *
  */
 var isAuthenticated = function (req, res, next) {
-	if(req.isAuthenticated()){
+	if(req.isAuthenticated()) {
 		next();
-	}else{
+	} else {
 		res.redirect('/');
 	}
 }

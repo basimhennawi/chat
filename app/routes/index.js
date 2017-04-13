@@ -10,7 +10,7 @@ var Room = require('../models/room');
 // Home page
 router.get('/', function(req, res, next) {
 	// If user is already logged in, then redirect to rooms page
-	if(req.isAuthenticated()){
+	if(req.isAuthenticated()) {
 		res.redirect('/rooms');
 	}
 	else{
@@ -34,21 +34,21 @@ router.post('/register', function(req, res, next) {
 
 	var credentials = {'username': req.body.username, 'password': req.body.password };
 
-	if(credentials.username === '' || credentials.password === ''){
+	if(credentials.username === '' || credentials.password === '') {
 		req.flash('error', 'Missing credentials');
 		req.flash('showRegisterForm', true);
 		res.redirect('/');
 	}else{
 
 		// Check if the username already exists for non-social account
-		User.findOne({'username': new RegExp('^' + req.body.username + '$', 'i'), 'socialId': null}, function(err, user){
+		User.findOne({'username': new RegExp('^' + req.body.username + '$', 'i'), 'socialId': null}, function(err, user) {
 			if(err) throw err;
-			if(user){
+			if(user) {
 				req.flash('error', 'Username already exists.');
 				req.flash('showRegisterForm', true);
 				res.redirect('/');
 			}else{
-				User.create(credentials, function(err, newUser){
+				User.create(credentials, function(err, newUser) {
 					if(err) throw err;
 					req.flash('success', 'Your account has been created. Please log in.');
 					res.redirect('/');
@@ -77,7 +77,7 @@ router.get('/auth/twitter/callback', passport.authenticate('twitter', {
 
 // Rooms
 router.get('/rooms', [User.isAuthenticated, function(req, res, next) {
-	Room.find(function(err, rooms){
+	Room.find(function(err, rooms) {
 		if(err) throw err;
 		res.render('rooms', { rooms });
 	});
@@ -86,9 +86,9 @@ router.get('/rooms', [User.isAuthenticated, function(req, res, next) {
 // Chat Room 
 router.get('/chat/:id', [User.isAuthenticated, function(req, res, next) {
 	var roomId = req.params.id;
-	Room.findById(roomId, function(err, room){
+	Room.findById(roomId, function(err, room) {
 		if(err) throw err;
-		if(!room){
+		if(!room) {
 			return next(); 
 		}
 		res.render('chatroom', { user: req.user, room: room });

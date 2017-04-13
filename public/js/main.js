@@ -2,7 +2,7 @@
 
 var app = {
 
-  rooms: function(){
+  rooms: function() {
 
     var socket = io('/rooms', { transports: ['websocket'] });
 
@@ -14,9 +14,9 @@ var app = {
 
         // Display an error message upon a user error(i.e. creating a room with an existing title)
         $('.room-create p.message').remove();
-        if(room.error != null){
+        if(room.error != null) {
           $('.room-create').append(`<p class="message error">${room.error}</p>`);
-        }else{
+        } else {
           app.helpers.updateRoomsList(room);
         }
       });
@@ -34,7 +34,7 @@ var app = {
     });
   },
 
-  chat: function(roomId, username){
+  chat: function(roomId, username) {
     
     var socket = io('/chatroom', { transports: ['websocket'] });
 
@@ -47,9 +47,9 @@ var app = {
         socket.on('updateUsersList', function(users, clear) {
 
           $('.container p.message').remove();
-          if(users.error != null){
+          if(users.error != null) {
             $('.container').html(`<p class="message error">${users.error}</p>`);
-          }else{
+          } else {
             app.helpers.updateUsersList(users, clear);
           }
         });
@@ -87,20 +87,20 @@ var app = {
 
   helpers: {
 
-    encodeHTML: function (str){
+    encodeHTML: function (str) {
       return $('<div />').text(str).html();
     },
 
     // Update rooms list
-    updateRoomsList: function(room){
+    updateRoomsList: function(room) {
       room.title = this.encodeHTML(room.title);
       var html = `<a href="/chat/${room._id}"><li class="room-item">${room.title}</li></a>`;
 
-      if(html === ''){ return; }
+      if(html === '') { return; }
 
-      if($(".room-list ul li").length > 0){
+      if($(".room-list ul li").length > 0) {
         $('.room-list ul').prepend(html);
-      }else{
+      } else {
         $('.room-list ul').html('').html(html);
       }
       
@@ -108,8 +108,8 @@ var app = {
     },
 
     // Update users list
-    updateUsersList: function(users, clear){
-        if(users.constructor !== Array){
+    updateUsersList: function(users, clear) {
+        if(users.constructor !== Array) {
           users = [users];
         }
 
@@ -124,11 +124,11 @@ var app = {
                      </div></li>`;
         }
 
-        if(html === ''){ return; }
+        if(html === '') { return; }
 
-        if(clear != null && clear == true){
+        if(clear != null && clear == true) {
           $('.users-list ul').html('').html(html);
-        }else{
+        } else {
           $('.users-list ul').prepend(html);
         }
 
@@ -136,7 +136,7 @@ var app = {
     },
 
     // Adding a new message to chat history
-    addMessage: function(message){
+    addMessage: function(message) {
       message.date      = (new Date(message.date)).toLocaleString();
       message.username  = this.encodeHTML(message.username);
       message.content   = this.encodeHTML(message.content);
@@ -156,14 +156,14 @@ var app = {
 
     // Update number of rooms
     // This method MUST be called after adding a new room
-    updateNumOfRooms: function(){
+    updateNumOfRooms: function() {
       var num = $('.room-list ul li').length;
       $('.room-num-rooms').text(num +  " Room(s)");
     },
 
     // Update number of online users in the current room
     // This method MUST be called after adding, or removing list element(s)
-    updateNumOfUsers: function(){
+    updateNumOfUsers: function() {
       var num = $('.users-list ul li').length;
       $('.chat-num-users').text(num +  " User(s)");
     }

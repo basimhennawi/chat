@@ -15,7 +15,7 @@ var User = require('../models/user');
  * Either by using username and password, or by using social accounts
  *
  */
-var init = function(){
+var init = function() {
 
 	// Serialize and Deserialize user instances to and from the session.
 	passport.serializeUser(function(user, done) {
